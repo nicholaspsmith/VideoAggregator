@@ -81,15 +81,39 @@ class VideosController < ApplicationController
       client.authorization = nil
         
 
-      result = client.execute :key => ENV["YOUTUBE_API_KEY"], :api_method => youtube.playlist_items.list, :parameters => {:playlistId => "PLECC18E60EBB421E6", :part => 'snippet'}
+      result = client.execute :key => ENV["YOUTUBE_API_KEY"], :api_method => youtube.playlist_items.list, :parameters => {:playlistId => "PLJWtlcIkujt_Rv6JZdJt8XL2GE24k0axd", :part => 'snippet'}
       result = JSON.parse(result.data.to_json)
       result_list = result["items"]
+
+
+      # [titles_in_db]
+      # if title from [titles_in_db] is not in [titles_from_yt] then add it to [titles_to_remove]
+      # [titles from yt]
+      titles_in_db = []
+      titles_from_yt = []
+      titles_to_remove = []
+      
+      Video.all.each do |vid|
+        titles_in_db << vid.title
+      end
+
       videos = {}
       result_list.each do |item|
         title = item["snippet"]["title"]
+        titles_from_yt << title
         youtube_id = item["snippet"]["resourceId"]["videoId"]
         videos[title] = youtube_id
+
+        # create video unless it is already in database
         Video.create(title:title, youtube_id:youtube_id) unless Video.where(title:title).length > 0
       end
+
+      titles_to_remove = titles_in_db - titles_from_yt
+      titles_to_remove.each do |title|
+        vid = Video.where(title:title)
+        vid.destroy_all
+      end
+
+
     end
 end

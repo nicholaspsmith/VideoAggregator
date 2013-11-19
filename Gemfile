@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
+# Declare Ruby version 2.0.0
+ruby '2.0.0'
+
 # Use sqlite3 as the database for Active Record
 group :development do
   gem 'sqlite3'
@@ -60,3 +63,5 @@ group :development do
 end
 
 gem 'hirb'
+
+gem 'rails_12factor''

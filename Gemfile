@@ -53,10 +53,10 @@ end
 gem 'google-api-client'
 gem 'figaro'
 
-group :development do
-  gem 'pry'
-  gem 'binding_of_caller'
-end
+
+gem 'pry-rails'
+gem 'binding_of_caller'
+
 
 gem 'hirb'
 

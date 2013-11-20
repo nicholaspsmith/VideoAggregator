@@ -102,7 +102,10 @@ class VideosController < ApplicationController
         title = item["snippet"]["title"]
         titles_from_yt << title
         youtube_id = item["snippet"]["resourceId"]["videoId"]
-        thumbnail_link = item["snippet"]["thumbnails"]["high"]["url"]
+        thumbnail_link = item["snippet"]["thumbnails"]["default"]["url"]
+
+
+        binding.pry
 
 
         # create video unless it is already in database
@@ -114,7 +117,5 @@ class VideosController < ApplicationController
         vid = Video.where(title:title)
         vid.destroy_all
       end
-
-
     end
 end

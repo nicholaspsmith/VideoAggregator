@@ -97,15 +97,16 @@ class VideosController < ApplicationController
         titles_in_db << vid.title
       end
 
-      videos = {}
+
       result_list.each do |item|
         title = item["snippet"]["title"]
         titles_from_yt << title
         youtube_id = item["snippet"]["resourceId"]["videoId"]
-        videos[title] = youtube_id
+        thumbnail_link = item["snippet"]["thumbnails"]["high"]["url"]
+
 
         # create video unless it is already in database
-        Video.create(title:title, youtube_id:youtube_id) unless Video.where(title:title).length > 0
+        Video.create(title:title, youtube_id:youtube_id, thumbnail_link:thumbnail_link) unless Video.where(title:title).length > 0
       end
 
       titles_to_remove = titles_in_db - titles_from_yt

@@ -12,9 +12,9 @@
   <tbody>
     <% @videos.each do |video| %>
       <tr>
-        <td><%= link_to video.title, "http://www.youtube.com/watch?v=#{video.youtube_id}" %></td>
-        
-        <td><%= link_to 'Show', video %></td>
+        <td><%= link_to image_tag(video.thumbnail_link, size: "200x120"), video %></td>
+        <td><p>View <%= link_to video.title, "http://www.youtube.com/watch?v=#{video.youtube_id}" %> on YouTube</p></td>
+
       </tr>
     <% end %>
   </tbody>

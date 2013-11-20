@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20131119160102) do
   create_table "videos", force: true do |t|
     t.string   "title"
     t.string   "youtube_id"
+    t.string   "thumbnail_link"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

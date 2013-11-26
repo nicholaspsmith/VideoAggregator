@@ -52,6 +52,9 @@ GEM
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
+    foundation-rails (5.0.2.0)
+      railties (>= 3.1.0)
+      sass (>= 3.2.0)
     google-api-client (0.6.4)
       addressable (>= 2.3.2)
       autoparse (>= 0.3.3)
@@ -161,6 +164,7 @@ DEPENDENCIES
   binding_of_caller
   coffee-rails (~> 4.0.0)
   figaro
+  foundation-rails
   google-api-client
   hirb
   jbuilder (~> 1.2)

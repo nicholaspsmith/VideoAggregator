@@ -1,26 +1,21 @@
-<h1>SpineCenter.TV</h1>
+<div id="main-content">
+  <h1>SpineCenter.TV</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody>
+  <div class="row vids">
     <% @videos.each do |video| %>
-      <tr>
-        <% if video.thumbnail_link != nil %>
-        <td><%= link_to image_tag(video.thumbnail_link, size: "180x100"), video %></td>
-        <% end %>
-        <td><p>View <%= link_to video.title, "http://www.youtube.com/watch?v=#{video.youtube_id}" %> on YouTube</p></td>
-
-      </tr>
+      <div class="large-3 columns">
+        <div class="vid">
+          <% if video.thumbnail_link != nil %>
+          <%= link_to image_tag(video.thumbnail_link), video %>
+          <% end %>
+          <div class="title">
+          <%= link_to video.title, video %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
-<br>
-
+  <br>
+</div>

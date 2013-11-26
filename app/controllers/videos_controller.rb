@@ -81,7 +81,7 @@ class VideosController < ApplicationController
       client.authorization = nil
         
 
-      result = client.execute :key => ENV["YOUTUBE_API_KEY"], :api_method => youtube.playlist_items.list, :parameters => {:playlistId => "PLJWtlcIkujt_Rv6JZdJt8XL2GE24k0axd", :part => 'snippet'}
+      result = client.execute :key => ENV["YOUTUBE_API_KEY"], :api_method => youtube.playlist_items.list, :parameters => {:playlistId => "PLJWtlcIkujt_Rv6JZdJt8XL2GE24k0axd", :part => 'snippet', :maxResults => 50}
       result = JSON.parse(result.data.to_json)
       result_list = result["items"]
 
@@ -92,6 +92,8 @@ class VideosController < ApplicationController
       titles_in_db = []
       titles_from_yt = []
       titles_to_remove = []
+
+
       
       Video.all.each do |vid|
         titles_in_db << vid.title
@@ -102,15 +104,17 @@ class VideosController < ApplicationController
         title = item["snippet"]["title"]
         titles_from_yt << title
         youtube_id = item["snippet"]["resourceId"]["videoId"]
-        thumbnail_link = item["snippet"]["thumbnails"]["default"]["url"]
+        thumbnail_link = item["snippet"]["thumbnails"]["high"]["url"]
+        if thumbnail_link == nil
+          thumbnail_link = item["snippet"]["thumbnails"]["default"]["url"]
+        end
 
-
-        binding.pry
-
+        #binding.pry
 
         # create video unless it is already in database
         Video.create(title:title, youtube_id:youtube_id, thumbnail_link:thumbnail_link) unless Video.where(title:title).length > 0
       end
+
 
       titles_to_remove = titles_in_db - titles_from_yt
       titles_to_remove.each do |title|

@@ -1,4 +1,4 @@
-<h1>Listing videos</h1>
+<h1>SpineCenter.TV</h1>
 
 <table>
   <thead>
@@ -13,7 +13,7 @@
     <% @videos.each do |video| %>
       <tr>
         <% if video.thumbnail_link != nil %>
-        <td><%= link_to image_tag(video.thumbnail_link, size: "200x120"), video %></td>
+        <td><%= link_to image_tag(video.thumbnail_link, size: "180x100"), video %></td>
         <% end %>
         <td><p>View <%= link_to video.title, "http://www.youtube.com/watch?v=#{video.youtube_id}" %> on YouTube</p></td>
 

@@ -6,14 +6,21 @@
 
     <title><%= content_for?(:title) ? yield(:title) : "SpineCenter.TV" %></title>
 
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
+    <p id="notice"><%= notice %></p>
 
-    <%= yield %>
+    <div id="main-content">
+      <h1>SpineCenter.TV <i class="fa fa-play-circle-o"></i></h1>
+      <br>
+      <%= yield %>
+    </div>
     <%= javascript_include_tag "application" %>
   </body>
 </html>

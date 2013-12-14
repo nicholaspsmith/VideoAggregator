@@ -1,21 +1,16 @@
-<div id="main-content">
-  <h1>SpineCenter.TV</h1>
-
-
-  <div class="row vids">
-    <% @videos.each do |video| %>
-      <div class="large-3 small-4 columns">
-        <div class="vid">
-          <% if video.thumbnail_link != nil %>
-          <%= link_to image_tag(video.thumbnail_link), video %>
-          <% end %>
-          <div class="title">
-          <%= link_to video.title, video %>
-          </div>
+<div class="row vids">
+  <% @videos.each do |video| %>
+    <div class="large-3 small-4 columns">
+      <div class="vid">
+        <% if video.thumbnail_link != nil %>
+        <%= link_to image_tag(video.thumbnail_link), video %>
+        <% end %>
+        <div class="title">
+        <%= link_to video.title, video %>
         </div>
       </div>
-    <% end %>
-  </div>
-
-  <br>
+    </div>
+  <% end %>
 </div>
+
+

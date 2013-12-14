@@ -1,7 +1,13 @@
-<p id="notice"><%= notice %></p>
+<div id="links">
+  
+  <%= link_to '<i class="fa fa-fast-backward"></i> Back'.html_safe, videos_path %> <!-- |
+  <%= link_to 'Edit', edit_video_path(@video) %> -->
+</div>
+<div class="row">
 
-<p><iframe width="560" height="315" src="//www.youtube.com/embed/<%= @video.youtube_id %>" frameborder="0" allowfullscreen></iframe></p>
 
-<%= link_to 'Back', videos_path %> |
-<%= link_to 'Edit', edit_video_path(@video) %>
+  <div class="large-4 small-4 columns">
+    <iframe width="560" height="315" src="//www.youtube.com/embed/<%= @video.youtube_id %>" frameborder="0" allowfullscreen></iframe>
+  </div>
 
+</div>

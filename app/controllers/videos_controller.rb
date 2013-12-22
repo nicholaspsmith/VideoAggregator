@@ -79,7 +79,6 @@ class VideosController < ApplicationController
       client = Google::APIClient.new :application_name => 'youtube accessor'
       youtube = client.discovered_api('youtube', 'v3')
       client.authorization = nil
-        
 
       result = client.execute :key => ENV["YOUTUBE_API_KEY"], :api_method => youtube.playlist_items.list, :parameters => {:playlistId => "PLJWtlcIkujt_Rv6JZdJt8XL2GE24k0axd", :part => 'snippet', :maxResults => 50}
       result = JSON.parse(result.data.to_json)
@@ -115,7 +114,7 @@ class VideosController < ApplicationController
         Video.create(title:title, youtube_id:youtube_id, thumbnail_link:thumbnail_link) unless Video.where(title:title).length > 0
       end
 
-
+      # if title from [titles_in_db] is not in [titles_from_yt] then add it to [titles_to_remove]
       titles_to_remove = titles_in_db - titles_from_yt
       titles_to_remove.each do |title|
         vid = Video.where(title:title)
